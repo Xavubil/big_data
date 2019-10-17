@@ -7,6 +7,9 @@ Dies ist eine temporäre Skriptdatei.
 
 import math as m
 import matplotlib.pyplot as plt
+import time
+import numpy as np
+import pandas as pd
 
 def Aufgabe_Eins_B():
     print('Addieren' , 1+1)
@@ -80,8 +83,53 @@ def Aufgabe_Eins_H():
         plt.show()
         
 Aufgabe_Eins_H()
+
+def Aufgabe_Eins_I(n):
+    ans = 1.0
+    for element in range(2, n+1):
+        ans = ans * (n+element)/element
+    return ans
+
+Aufgabe_Eins_I(50)
         
+def Aufgabe_Eins_J():
+    time_now = []
+    for x in range(50, 1501, 50):
+        start = time.time()
+        Aufgabe_Eins_I(75)
+        end = time.time()
+        time_now.append(end - start)
+        
+    plt.scatter(range(50, 1501, 50), time_now)
+    plt.plot(range(50, 1501, 50), time_now)
     
+Aufgabe_Eins_J()
+
+
+
+def Aufgabe_Eins_K():
+    file = open("C:/Users/MLDigitalLab/Desktop/Master Informatik/2. Semester/Big Data/Praktikum 1/adsbprak.txt", "r")
+    #file = open("C:/Users/MLDigitalLab/Desktop/Master Informatik/2. Semester/Big Data/Praktikum 1/adsbprak2.txt", "r")
+    breiten = []
+    laengen = []
+    prev_id = 0
+    for line in file:
+        current_line = line.split(",")
+        if current_line[0] != prev_id:
+            plt.plot(breiten, laengen)
+            plt.scatter(breiten, laengen)
+            breiten = []
+            laengen = []
+        breiten.append(float(current_line[-2]))
+        laengen.append(float(current_line[-1]))
+        prev_id = current_line[0]
+    
+    plt.plot(breiten, laengen)
+    plt.scatter(breiten, laengen)
+    #plt.show()
+    file.close()
+
+Aufgabe_Eins_K()
 
 
 
