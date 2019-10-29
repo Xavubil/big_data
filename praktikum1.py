@@ -77,26 +77,32 @@ def Aufgabe_Eins_H():
         sin_comprehension.append(m.sin(degree) + m.sin(2*degree)/2 + m.sin(4*degree)/4 + m.sin(8*degree)/8)
         cos_comprehension.append(m.cos(degree) + m.cos(2*degree)/2 + m.cos(4*degree)/4 + m.cos(8*degree)/8)
         
-        fig, ax = plt.subplots()
-        ax.plot(temp, sin_comprehension, 'b', label='sinus')
-        ax.plot(temp, cos_comprehension, 'r', label='cosinus')
-        plt.show()
-        
+
+    fig, ax = plt.subplots()
+    ax.plot(temp, sin_comprehension, 'b', label='sinus')
+    ax.plot(temp, cos_comprehension, 'r', label='cosinus')
+    plt.show()
+    
 Aufgabe_Eins_H()
 
 def Aufgabe_Eins_I(n):
-    ans = 1.0
-    for element in range(2, n+1):
-        ans = ans * (n+element)/element
-    return ans
+    c=[1]
+    for element in range(1, n+1):
+        sum = 0
+        for k in range(0, element):
+            sum = sum + c[k]*c[element-k-1]
+        c.append(sum)
+    return c
 
-Aufgabe_Eins_I(50)
+
+print(Aufgabe_Eins_I(10))
+#Aufgabe_Eins_I(5000)
         
 def Aufgabe_Eins_J():
     time_now = []
     for x in range(50, 1501, 50):
         start = time.time()
-        Aufgabe_Eins_I(75)
+        Aufgabe_Eins_I(x)
         end = time.time()
         time_now.append(end - start)
         
